@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --black: #0a0a0a; --white: #f5f5f0; --yellow: #f5c518;
-  --orange: #e84c0a; --grey: #1a1a1a; --muted: #888;
+  --orange: #16a34a; --grey: #0f2010; --muted: #888;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -9,7 +9,7 @@ html { scroll-behavior: smooth; }
 body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
 a { color: inherit; text-decoration: none; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 40px; background: rgba(10,10,10,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #222; }
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 40px; background: rgba(0,20,0,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #222; }
 .nav-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 2px; }
 .nav-logo span { color: var(--yellow); }
 .nav-links { list-style: none; display: flex; gap: 32px; }
@@ -64,12 +64,12 @@ a { color: inherit; text-decoration: none; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 220px); gap: 12px; }
 .gallery-item { border-radius: 4px; display: flex; align-items: flex-end; padding: 16px; font-size: 0.85rem; font-weight: 600; border: 1px solid #2a2a2a; transition: transform 0.2s; cursor: pointer; }
 .gallery-item:hover { transform: scale(1.02); }
-.g1 { background: linear-gradient(135deg, #1a0a00, #3d1800); }
+.g1 { background: linear-gradient(135deg, #0a1a0a, #1a3d1a); }
 .g2 { background: linear-gradient(135deg, #001a2a, #003d5a); grid-row: span 2; }
-.g3 { background: linear-gradient(135deg, #0a1a00, #1a3d00); }
-.g4 { background: linear-gradient(135deg, #1a1500, #3d3000); }
-.g5 { background: linear-gradient(135deg, #100020, #220040); }
-.g6 { background: linear-gradient(135deg, #1a0010, #3d0028); }
+.g3 { background: linear-gradient(135deg, #0d2b0d, #1f5c1f); }
+.g4 { background: linear-gradient(135deg, #1a2a0a, #2d4a0f); }
+.g5 { background: linear-gradient(135deg, #0a2a0a, #0f4a0f); }
+.g6 { background: linear-gradient(135deg, #0a1a00, #1a3a00); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
 .contact-item { display: flex; gap: 16px; margin-bottom: 28px; align-items: flex-start; }
 .contact-icon { font-size: 1.4rem; }
