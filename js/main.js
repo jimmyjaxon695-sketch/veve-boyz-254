@@ -63,3 +63,116 @@ document.querySelectorAll('a[href^="#"]').forEach(function(link) {
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+// ===========================
+// OCCASION HERO THEME
+// ===========================
+
+function applyOccasionTheme() {
+  const occasion = getOccasion();
+  if (!occasion) return;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    /* Override hero glow with occasion color */
+    .hero::after {
+      background: radial-gradient(circle, ${occasion.color}26 0%, transparent 70%) !important;
+    }
+    .hero::before {
+      background-image:
+        linear-gradient(${occasion.color}0d 1px, transparent 1px),
+        linear-gradient(90deg, ${occasion.color}0d 1px, transparent 1px) !important;
+    }
+    .hero-eyebrow {
+      color: ${occasion.color} !important;
+      text-shadow: 0 0 20px ${occasion.color}66 !important;
+    }
+    .hero-logo {
+      border-color: ${occasion.color} !important;
+      box-shadow: 0 0 40px ${occasion.color}66, 0 0 80px ${occasion.color}22 !important;
+    }
+    .navbar {
+      border-bottom-color: ${occasion.color}55 !important;
+      box-shadow: 0 4px 30px ${occasion.color}22 !important;
+    }
+    .nav-logo span {
+      color: ${occasion.color} !important;
+      text-shadow: 0 0 20px ${occasion.color}66 !important;
+    }
+    .section-eyebrow {
+      color: ${occasion.color} !important;
+      text-shadow: 0 0 15px ${occasion.color}66 !important;
+    }
+    .btn-outline {
+      border-color: ${occasion.color}88 !important;
+    }
+    .btn-outline:hover {
+      border-color: ${occasion.color} !important;
+      color: ${occasion.color} !important;
+      box-shadow: 0 0 20px ${occasion.color}66 !important;
+    }
+    .service-card::before {
+      background: linear-gradient(90deg, transparent, ${occasion.color}, transparent) !important;
+    }
+    .service-card:hover {
+      border-color: ${occasion.color}88 !important;
+      box-shadow: 0 20px 40px ${occasion.color}26 !important;
+    }
+    .gallery-item:hover {
+      border-color: ${occasion.color}88 !important;
+      box-shadow: 0 10px 40px ${occasion.color}33 !important;
+    }
+    .gallery-item span {
+      border-color: ${occasion.color}55 !important;
+    }
+    .contact-item strong {
+      color: ${occasion.color} !important;
+    }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: ${occasion.color} !important;
+      box-shadow: 0 0 15px ${occasion.color}33 !important;
+    }
+    .footer-logo span {
+      color: ${occasion.color} !important;
+      text-shadow: 0 0 20px ${occasion.color}66 !important;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${occasion.color} !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Also add floating occasion emoji particles in hero
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    for (let i = 0; i < 6; i++) {
+      const particle = document.createElement('div');
+      particle.textContent = occasion.emoji;
+      particle.style.cssText = `
+        position: absolute;
+        font-size: ${Math.random() * 1.5 + 0.8}rem;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        opacity: ${Math.random() * 0.15 + 0.05};
+        z-index: 1;
+        pointer-events: none;
+        animation: floatParticle ${Math.random() * 6 + 6}s ease-in-out infinite;
+        animation-delay: ${Math.random() * 4}s;
+      `;
+      hero.appendChild(particle);
+    }
+
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+      @keyframes floatParticle {
+        0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.08; }
+        50% { transform: translateY(-30px) rotate(10deg); opacity: 0.18; }
+      }
+    `;
+    document.head.appendChild(particleStyle);
+  }
+}
+
+window.addEventListener('load', applyOccasionTheme);
