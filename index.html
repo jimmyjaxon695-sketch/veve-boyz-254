@@ -9,12 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
+  <div id="loader"><div class="loader-inner"><img src="images/logo.jpeg" class="loader-logo"><div class="loader-text">VEVE BOYZ 254</div><div class="loader-bar"><div class="loader-fill"></div></div></div></div>
   <nav class="navbar">
     <div class="nav-logo">VEVE BOYZ <span>254</span></div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#shop">Shop</a></li>
       <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#booking">Book</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <img src="images/logo.jpeg" alt="Veve Boyz 254" class="logo-img">
@@ -78,6 +80,7 @@
           <div class="product-info">
             <h4>Veve Boyz Cap</h4>
             <p class="product-desc">Classic snapback. Bold embroidery. Road-ready.</p>
+            <div class="size-selector"><span>Size:</span><button class="size-btn active">Free</button></div>
             <div class="product-footer">
               <span class="product-price">KSh 1,000</span>
               <button class="btn-buy" onclick="addToCart('Veve Boyz Cap', 1000)">Add to Cart</button>
@@ -89,6 +92,7 @@
           <div class="product-info">
             <h4>Veve Boyz T-Shirt</h4>
             <p class="product-desc">Premium cotton. Street-ready graphic print.</p>
+            <div class="size-selector"><span>Size:</span><button class="size-btn" onclick="selectSize(this)">S</button><button class="size-btn" onclick="selectSize(this)">M</button><button class="size-btn active" onclick="selectSize(this)">L</button><button class="size-btn" onclick="selectSize(this)">XL</button></div>
             <div class="product-footer">
               <span class="product-price">KSh 1,500</span>
               <button class="btn-buy" onclick="addToCart('Veve Boyz T-Shirt', 1500)">Add to Cart</button>
@@ -100,6 +104,7 @@
           <div class="product-info">
             <h4>Road Trip Hoodie</h4>
             <p class="product-desc">For cold mornings on the road. Heavy fleece.</p>
+            <div class="size-selector"><span>Size:</span><button class="size-btn" onclick="selectSize(this)">S</button><button class="size-btn" onclick="selectSize(this)">M</button><button class="size-btn active" onclick="selectSize(this)">L</button><button class="size-btn" onclick="selectSize(this)">XL</button></div>
             <div class="product-footer">
               <span class="product-price">KSh 2,500</span>
               <button class="btn-buy" onclick="addToCart('Road Trip Hoodie', 2500)">Add to Cart</button>
@@ -127,6 +132,65 @@
         <div class="gallery-item g4"><img src="images/safari-mode.jpeg" alt="Safari Mode" class="gallery-img"><span>Safari Mode 🦁</span></div>
         <div class="gallery-item g5"><img src="images/night-drives.jpg" alt="Night Drives" class="gallery-img"><span>Night Drives 🌙</span></div>
         <div class="gallery-item g6"><img src="images/wedding-convoy.jpg" alt="Wedding Convoy" class="gallery-img"><span>Wedding Convoy 💍</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox"><span id="lightbox-close" onclick="closeLightbox()">✕</span><button id="lightbox-prev" onclick="lightboxNav(-1)">‹</button><img id="lightbox-img" src="" alt=""/><div id="lightbox-caption"></div><button id="lightbox-next" onclick="lightboxNav(1)">›</button></div>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <p class="section-eyebrow">What People Say</p>
+      <h2 class="section-title">Client Reviews</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">Veve Boyz took us on the most epic coast road trip. Everything was sorted — vibes, food, accommodation. 10/10 would book again!</p><div class="testimonial-author"><div class="testimonial-avatar">👩</div><div class="testimonial-name"><strong>Amina K.</strong><span>Nairobi, Kenya</span></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">We used Veve Boyz for our wedding convoy and it was absolutely fire. The matatu was decorated perfectly and the energy was unmatched!</p><div class="testimonial-author"><div class="testimonial-avatar">👨</div><div class="testimonial-name"><strong>Brian M.</strong><span>Nairobi, Kenya</span></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">Rift Valley road trip with the squad — best weekend of our lives. Veve Boyz really know how to make a trip unforgettable!</p><div class="testimonial-author"><div class="testimonial-avatar">👩</div><div class="testimonial-name"><strong>Zawadi O.</strong><span>Mombasa, Kenya</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <div class="container">
+      <p class="section-eyebrow">Plan Your Trip</p>
+      <h2 class="section-title">Trip Calculator</h2>
+      <div class="booking-grid">
+        <div class="booking-form">
+          <select id="calc-destination" onchange="calculatePrice()">
+            <option value="">Select Destination</option>
+            <option value="coast">Mombasa Coast</option>
+            <option value="rift">Rift Valley</option>
+            <option value="mara">Maasai Mara</option>
+            <option value="nakuru">Nakuru</option>
+            <option value="meru">Mount Kenya / Meru</option>
+            <option value="naivasha">Naivasha</option>
+          </select>
+          <select id="calc-service" onchange="calculatePrice()">
+            <option value="">Select Service</option>
+            <option value="matatu">Matatu Sampling</option>
+            <option value="roadtrip">Road Trip</option>
+            <option value="wedding">Wedding Convoy</option>
+            <option value="group">Group Adventure</option>
+          </select>
+          <input type="number" id="calc-people" placeholder="Number of People" min="1" max="50" oninput="calculatePrice()" />
+          <input type="date" id="calc-date" onchange="calculatePrice()" />
+          <button class="btn btn-primary" onclick="bookNowWhatsApp()">Book Now via WhatsApp 📲</button>
+        </div>
+        <div class="price-display">
+          <h3>Estimated Price</h3>
+          <div class="price-amount" id="price-amount">KSh 0</div>
+          <div class="price-label">Per Person</div>
+          <div class="price-breakdown" id="price-breakdown"></div>
+        </div>
+      </div>
+      <div class="referral">
+        <h3>Got a Referral Code? 🎉</h3>
+        <p>Enter your code below to unlock a special discount on your booking!</p>
+        <div class="referral-input">
+          <input type="text" id="referral-input" placeholder="Enter code e.g. VEVE10" />
+          <button class="btn btn-primary" onclick="applyReferral()">Apply</button>
+        </div>
+        <div class="referral-code" id="referral-result"></div>
       </div>
     </div>
   </section>
@@ -179,6 +243,9 @@
     </div>
   </footer>
 
+  <a href="https://wa.me/254726147471" class="whatsapp-float" target="_blank">💬</a>
+  <div id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+  <div id="scroll-progress"></div>
   <script src="js/main.js"></script>
 </body>
 </html>
