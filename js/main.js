@@ -360,7 +360,8 @@ const matatus = {
     { name: 'Optimus', img: 'images/embakasi/Optimus.jpeg' },
     { name: 'Squid Game', img: 'images/embakasi/SquidGame.jpeg' },
     { name: 'Syndicate', img: 'images/embakasi/syndicate.jpeg' },
-    { name: 'Versace', img: 'images/embakasi/VERSACE.jpeg' }
+    { name: 'Versace', img: 'images/embakasi/VERSACE.jpeg' },
+    { name: 'Moneyfest', img: 'images/embakasi/Moneyfest.jpeg' }
   ]
 };
 
