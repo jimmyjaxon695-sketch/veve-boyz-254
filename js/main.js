@@ -331,6 +331,23 @@ function applyReferral() {
 
 // ===== MATATU SELECTOR =====
 const matatus = {
+  ngong111: [
+    { name: "Audiophile", img: "images/ngong111/AUDIOPHILE.jpeg" },
+    { name: "Cyber Punk", img: "images/ngong111/Cyber punk.jpeg" },
+    { name: "Harukaze", img: "images/ngong111/Harukaze.jpeg" },
+    { name: "Ikigai", img: "images/ngong111/Ikigai.jpeg" },
+    { name: "Raptor", img: "images/ngong111/Raptor.jpeg" },
+    { name: "Spice", img: "images/ngong111/Spice.jpeg" },
+    { name: "Spurs", img: "images/ngong111/Spurs.jpeg" }
+  ],
+  rongai125: [
+    { name: "Baba Yaga", img: "images/rongai125/Baba yaga.jpeg" },
+    { name: "Detroit", img: "images/rongai125/Detroit.jpg" },
+    { name: "Ferrari", img: "images/rongai125/Ferrari.jpeg" },
+    { name: "Heisenburg", img: "images/rongai125/Heisenburg.jpeg" },
+    { name: "Mad Max", img: "images/rongai125/Mad Max.jpeg" },
+    { name: "Phenominal", img: "images/rongai125/Phenominal.jpeg" }
+  ],
   embakasi: [
     { name: 'Bapestar', img: 'images/embakasi/Bapestar.jpeg' },
     { name: 'Bionic', img: 'images/embakasi/Bionic.jpeg' },
@@ -349,8 +366,10 @@ const matatus = {
 
 let selectedMatatu = null;
 
+
 function openMatatuSelector(route) {
   const list = matatus[route];
+  const routeLabels = { embakasi: 'Route 33 — Embakasi', rongai125: 'Route 125 — Rongai', ngong111: 'Route 111 — Ngong' };
   if (!list) return;
 
   const overlay = document.createElement('div');
@@ -359,7 +378,7 @@ function openMatatuSelector(route) {
     <div class="matatu-modal">
       <div class="matatu-modal-header">
         <div>
-          <p class="matatu-route-label">Route 33 — Embakasi</p>
+          <p class="matatu-route-label" id="matatu-route-label">Loading...</p>
           <h3>Choose Your Matatu</h3>
         </div>
         <button class="matatu-close" onclick="closeMatatuSelector()">✕</button>
@@ -407,7 +426,7 @@ function selectMatatu(index, route) {
 
 function bookMatatu(route) {
   if (!selectedMatatu) return;
-  const routeNames = { embakasi: 'Route 33 — Embakasi to Nairobi' };
+  const routeNames = { embakasi: 'Route 33 — Embakasi to Nairobi', rongai125: 'Route 125 — Rongai to Nairobi', ngong111: 'Route 111 — Ngong to Nairobi' };
   const msg = 'Hello Veve Boyz 254!%0A%0AI would like to book:%0ARoute: ' + routeNames[route] + '%0AMatatu: ' + selectedMatatu.name + '%0AFare: KSh 100%0A%0APlease confirm availability!';
   window.open('https://wa.me/254726147471?text=' + msg, '_blank');
 }
