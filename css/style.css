@@ -342,3 +342,61 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 768px) {
   .booking-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== ROUTES ===== */
+.routes { background: var(--black); padding: 100px 0; }
+.routes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.route-card {
+  background: linear-gradient(135deg, #0d1a0d, #111);
+  border: 1px solid rgba(22,163,74,0.2);
+  border-radius: 8px; padding: 28px;
+  transition: all 0.4s;
+}
+.route-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(22,163,74,0.5);
+  box-shadow: 0 20px 40px rgba(22,163,74,0.15);
+}
+.route-header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 24px;
+}
+.route-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem; letter-spacing: 2px; color: #555;
+}
+.route-badge {
+  background: rgba(22,163,74,0.1);
+  border: 1px solid rgba(22,163,74,0.3);
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 0.8rem; font-weight: 700;
+  color: #16a34a; letter-spacing: 1px;
+}
+.route-stops { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+.route-stop {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0;
+}
+.stop-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #16a34a; flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(22,163,74,0.5);
+}
+.stop-name { flex: 1; font-size: 0.95rem; font-weight: 600; color: var(--white); }
+.stop-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 1px; color: #f5c518;
+  text-shadow: 0 0 10px rgba(245,197,24,0.3);
+}
+.route-line {
+  width: 2px; height: 24px;
+  background: linear-gradient(to bottom, #16a34a, rgba(22,163,74,0.2));
+  margin-left: 5px;
+}
+.route-total {
+  background: rgba(245,197,24,0.05);
+  border: 1px solid rgba(245,197,24,0.15);
+  border-radius: 4px; padding: 12px 16px;
+  font-size: 0.85rem; color: #aaa;
+}
+.route-total strong { color: #f5c518; }
