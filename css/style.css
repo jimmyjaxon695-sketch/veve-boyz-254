@@ -400,3 +400,116 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.85rem; color: #aaa;
 }
 .route-total strong { color: #f5c518; }
+
+/* ===== MATATU SELECTOR ===== */
+#matatu-overlay {
+  position: fixed; inset: 0; z-index: 99999;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; transition: opacity 0.3s;
+}
+#matatu-overlay.open { opacity: 1; }
+
+.matatu-modal {
+  background: linear-gradient(135deg, #0d1a0d, #111);
+  border: 1px solid rgba(22,163,74,0.3);
+  border-radius: 12px;
+  width: 100%; max-width: 800px;
+  max-height: 90vh; overflow-y: auto;
+  padding: 32px;
+  box-shadow: 0 0 60px rgba(22,163,74,0.2);
+}
+
+.matatu-modal-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 28px;
+}
+.matatu-route-label {
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: #16a34a; margin-bottom: 6px;
+  text-shadow: 0 0 10px rgba(22,163,74,0.5);
+}
+.matatu-modal-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 2px; color: white;
+}
+.matatu-close {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #333; color: #aaa;
+  width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; font-size: 1rem;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.matatu-close:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.matatu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px; margin-bottom: 28px;
+}
+
+.matatu-card {
+  border: 1px solid rgba(22,163,74,0.15);
+  border-radius: 8px; overflow: hidden;
+  cursor: pointer; transition: all 0.3s;
+  background: #0a0a0a;
+}
+.matatu-card:hover {
+  border-color: rgba(22,163,74,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(22,163,74,0.2);
+}
+.matatu-card.selected {
+  border-color: #f5c518;
+  box-shadow: 0 0 20px rgba(245,197,24,0.3);
+}
+
+.matatu-img-wrap {
+  position: relative; height: 120px; overflow: hidden;
+}
+.matatu-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.3s;
+}
+.matatu-card:hover .matatu-img-wrap img { transform: scale(1.05); }
+
+.matatu-check {
+  position: absolute; top: 8px; right: 8px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #f5c518; color: #000;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 900;
+  opacity: 0; transition: opacity 0.2s;
+}
+.matatu-card.selected .matatu-check { opacity: 1; }
+
+.matatu-name {
+  padding: 10px 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem; letter-spacing: 1px;
+  color: white; text-align: center;
+}
+.matatu-card.selected .matatu-name { color: #f5c518; }
+
+.matatu-footer {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  flex-wrap: wrap;
+}
+.matatu-selected-info {
+  font-size: 0.9rem; color: #aaa; flex: 1;
+}
+.matatu-selected-info strong { color: #f5c518; }
+
+#matatu-book-btn:disabled {
+  opacity: 0.4; cursor: not-allowed; transform: none !important;
+}
+
+@media (max-width: 600px) {
+  .matatu-modal { padding: 20px; }
+  .matatu-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}

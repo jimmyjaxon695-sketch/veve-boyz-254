@@ -328,3 +328,95 @@ function applyReferral() {
     result.style.borderColor = '#e84c0a';
   }
 }
+
+// ===== MATATU SELECTOR =====
+const matatus = {
+  embakasi: [
+    { name: 'Bapestar', img: 'images/embakasi/Bapestar.jpeg' },
+    { name: 'Bionic', img: 'images/embakasi/Bionic.jpeg' },
+    { name: 'Brawlout', img: 'images/embakasi/Brawlout.jpeg' },
+    { name: 'Dice', img: 'images/embakasi/Dice.jpeg' },
+    { name: 'Heartless', img: 'images/embakasi/Heartless.jpeg' },
+    { name: 'Mood', img: 'images/embakasi/mood.jpeg' },
+    { name: 'Moxy', img: 'images/embakasi/Moxy.jpeg' },
+    { name: 'NFS', img: 'images/embakasi/NFS.jpeg' },
+    { name: 'Optimus', img: 'images/embakasi/Optimus.jpeg' },
+    { name: 'Squid Game', img: 'images/embakasi/SquidGame.jpeg' },
+    { name: 'Syndicate', img: 'images/embakasi/syndicate.jpeg' },
+    { name: 'Versace', img: 'images/embakasi/VERSACE.jpeg' }
+  ]
+};
+
+let selectedMatatu = null;
+
+function openMatatuSelector(route) {
+  const list = matatus[route];
+  if (!list) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'matatu-overlay';
+  overlay.innerHTML = `
+    <div class="matatu-modal">
+      <div class="matatu-modal-header">
+        <div>
+          <p class="matatu-route-label">Route 33 — Embakasi</p>
+          <h3>Choose Your Matatu</h3>
+        </div>
+        <button class="matatu-close" onclick="closeMatatuSelector()">✕</button>
+      </div>
+      <div class="matatu-grid">
+        ${list.map((m, i) => `
+          <div class="matatu-card" id="matatu-${i}" onclick="selectMatatu(${i}, '${route}')">
+            <div class="matatu-img-wrap">
+              <img src="${m.img}" alt="${m.name}" />
+              <div class="matatu-check">✓</div>
+            </div>
+            <div class="matatu-name">${m.name}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="matatu-footer">
+        <div class="matatu-selected-info" id="matatu-selected-info">
+          👆 Select a matatu above to book
+        </div>
+        <button class="btn btn-primary" id="matatu-book-btn" onclick="bookMatatu('${route}')" disabled>
+          Book via WhatsApp 📲
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => overlay.classList.add('open'), 10);
+}
+
+function selectMatatu(index, route) {
+  selectedMatatu = { ...matatus[route][index], index };
+
+  // Update UI
+  document.querySelectorAll('.matatu-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('matatu-' + index).classList.add('selected');
+
+  document.getElementById('matatu-selected-info').innerHTML =
+    '🚌 Selected: <strong>' + selectedMatatu.name + '</strong> — Route 33 Embakasi · KSh 100';
+
+  const btn = document.getElementById('matatu-book-btn');
+  btn.disabled = false;
+}
+
+function bookMatatu(route) {
+  if (!selectedMatatu) return;
+  const routeNames = { embakasi: 'Route 33 — Embakasi to Nairobi' };
+  const msg = 'Hello Veve Boyz 254!%0A%0AI would like to book:%0ARoute: ' + routeNames[route] + '%0AMatatu: ' + selectedMatatu.name + '%0AFare: KSh 100%0A%0APlease confirm availability!';
+  window.open('https://wa.me/254726147471?text=' + msg, '_blank');
+}
+
+function closeMatatuSelector() {
+  const overlay = document.getElementById('matatu-overlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    setTimeout(() => { overlay.remove(); selectedMatatu = null; }, 300);
+  }
+  document.body.style.overflow = '';
+}
